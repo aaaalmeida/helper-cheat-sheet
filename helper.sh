@@ -7,11 +7,11 @@ cat <<EOF
 helper.sh — Linux Cheat Sheet
 
 Usage:
-  helper             # Show helper file
-  helper -l          # Show helper file
-  helper -w          # Edit helper file
-  helper -f termo    # Search multiple arguments
-  helper -h          # Show command documentation
+  helper                   # Show helper file
+  helper -l                # Show helper file
+  helper -w                # Edit helper file
+  helper -f search_word    # Search multiple arguments
+  helper -h                # Show command documentation
 
 Requirements:
   - glow
