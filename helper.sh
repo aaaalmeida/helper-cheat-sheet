@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HELPER_FILE="./helper.md"
+HELPER_FILE="$HOME/.scripts/helper/helper.md"
 
 show_help() {
 cat <<EOF
