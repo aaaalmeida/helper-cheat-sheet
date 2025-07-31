@@ -26,6 +26,7 @@
 ### git remote
 
 Control repository server/location
+
 | Command | Action |
 | --- | --- |
 | git remote | list connections to other repositories |
@@ -45,11 +46,29 @@ Control repository server/location
 | git stash pop | retrive last stashed change |
 | git stash drop | delete last stashed change |
 
+## bash
+
+| Command | Action |
+| --- | --- |
+| ln -s filename linkname | create a symlink to file, directory or script |
+| read [variable] | read stdin value to variable. if variable not specified then value is stored in ${REPLY} | 
+| mapfile arrayname | read stdin to an indexed array |
+| mapfile -t arrayname < file | read file to an indexed array ignoring endline |
+| readarray | alias to mapfile |
+| grep pattern [file] | search patterns in file. if file not specified then search in stdin |
+| grep [ -w word-regexp \| -i ignore-case \| -r recursive ] pattern | search pattern |
+| source filename | import file into context |
+| date | current date |
+| date +%F_%T | current date in YYYY-MM-DD_hh:mm:ss |
+| date -d 'tomorrow' | tomorrow date |
+| time command [arguments] | measure time used to execute command |
+| lsblk | list partitions info |
+
 ## pacman
 
 See [pacman packages](https://archlinux.org/packages/) for official packages
 
-See [arch user repository](https://aur.archlinux.org/) for unofficial packages
+See [arch user repository](https://aur.archlinux.org/packages/) for user repository packages
 | Command | Action |
 | --- | --- |
 | pacman -S package_name | install package |

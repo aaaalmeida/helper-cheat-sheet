@@ -21,14 +21,14 @@ EOF
 }
 
 case "$1" in
-  "-w")
+  "-w" | "-W" | "-write")
     nano "$HELPER_FILE"
     ;;
 
-  "-l" | "")
-    glow "$HELPER_FILE"
+  "-l" | "-L" | "" | "-list")
+    glow -w 120 "$HELPER_FILE"
     ;;
-  "-f")
+  "-f" | "-F" | "-find")
     shift
     if [ "$#" -eq 0 ]; then
       echo "Error: search word needed."
