@@ -65,7 +65,7 @@ Quick operations before a commit
 | date -d 'tomorrow' | tomorrow date |
 | time command [arguments] | measure time used to execute command |
 | lsblk | list partitions info |
-
+| ssh <user>@<server[:port]> | ssh into server as user (maybe need password) |
 ## PACMAN
 
 See [pacman packages](https://archlinux.org/packages/) for official packages
@@ -134,25 +134,62 @@ h     l
 
 | COMMAND | ACTION |
 | :--- | :--- |
-| <number> w | move cursor nth words foward |
-| <number> b | move cursor nth words backward |
+| [number] w | move cursor nth words foward |
+| [number] e | move cursor to the end of the nth word foward |
+| [number] b | move cursor nth words backward |
 | 0 | move cursor to start of the line |
+| gg | move the start of the file |
+| G | move to the end of the file |
+| <n> G | move to line n |
 
 ### BASIC
 
 | COMMAND | ACTION |
 | :--- | :--- |
-| :h[elp] keyword | open help for keyword |
+| :h keyword | open help for keyword |
 | :q | quit vim |
-| :qw | save then quit vim |
 | :q! | quit vim without saving |
-| ESC | exit insert mode |
-| :w | save file |
+| :w <filename> | save file |
+| u | undo last command |
+| CTRL G | file status |
+| ! <external command> | execute an external command (see BASH for info) |
+
+| CHANGE MODE COMMAND | ACTION |
+| :--- | :--- |
+| ESC | exit last mode |
+| v | selection mode |
+| i | insertion mode |
+
+| COPY AND PASTE | 
+| :--- | :--- |
+| y | copy to buffer (use v to enter selection mode) |
+| yy | copy line |
+| p | paste |
+
+| INSERTION COMMAND | ACTION |
+| :--- | :--- |
+| i | insertion mode on cursor |
+| a | insertion mode AFTER cursor |
+| A | insertion mode at THE END of the line |
+| o | insertion mode on line below |
+| O | insertion mode on line ABOVE |
 
 | DELETE COMMAND | ACTION |
 | :--- | :--- |
-| dd | delete whole line |
+| dd | delete whole line (deleted text goes to buffer) |
 | d$ | delete line after cursor |
 | dw | delete word on cursor |
-| A | append text (enter insert mode in the end of the line) |
+
+| REPLACE COMMAND | ACTION |
+| :--- | :--- |
+| [number] r <char> | replace nth character at the cursor with char |
+| R | free replace mode (replace until ESC) |
+| ce | replace until the end of the word |
+| cc | replace everything until the end of the word |
+| c$ | replace everything until the end of the word |
+
+| SEARCH COMMAND | ACTION |
+| :--- | :--- |
+| / <word> | search for word in file (use n and N for go to next occurence) |
+| ? <word> | search for word in file backwards (use n and N for go to next occurence) |
 
