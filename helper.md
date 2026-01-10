@@ -42,7 +42,7 @@ Control repository server/location
 Quick operations before a commit
 
 | Command | Action |
-| --- | --- |
+| :--- | :--- |
 | git stash | save modified and changed changes in a stack |
 | git stash list | list stack-order changes in stack |
 | git stash pop | retrive last stashed change |
@@ -53,24 +53,31 @@ Quick operations before a commit
 | COMMAND | ACTION |
 | :--- | :--- |
 | ln -s filename linkname | create a symlink to file, directory or script |
-| read [variable] | read stdin value to variable. if variable not specified then value is stored in ${REPLY} | 
+| read \[variable\] | read stdin value to variable. if variable not specified then value is stored in ${REPLY} | 
 | mapfile arrayname | read stdin to an indexed array |
-| mapfile -t arrayname < file | read file to an indexed array ignoring endline |
+| mapfile -t arrayname \<file\> | read file to an indexed array ignoring endline |
 | readarray | alias to mapfile |
 | grep pattern [file] | search patterns in file. if file not specified then search in stdin |
-| grep [ -w word-regexp \| -i ignore-case \| -r recursive ] pattern | search pattern |
+| grep \[ -w word-regexp \| -i ignore-case \| -r recursive \] pattern | search pattern |
 | source filename | import file into context |
 | date | current date |
 | date +%F_%T | current date in YYYY-MM-DD_hh:mm:ss |
 | date -d 'tomorrow' | tomorrow date |
 | time command [arguments] | measure time used to execute command |
 | lsblk | list partitions info |
-| ssh <user>@<server[:port]> | ssh into server as user (maybe need password) |
+| ssh \<user\>@\<server\[:port\]\> | ssh into server as user (maybe need password) |
+| tr \<replacement\> \<pattern\> | transform pattern into replacement |
+| whoami | show current user |
+| whereis | show path to binary or source |
+| which | show full path and which version of command is used |
+| du [-h -c -t \<threshold\>] | device usage for files recursive |
+
 ## PACMAN
 
 See [pacman packages](https://archlinux.org/packages/) for official packages
 
 See [arch user repository](https://aur.archlinux.org/packages/) for user repository packages
+
 | COMMAND | Action |
 | :--- | :--- |
 | pacman -S package_name | install package |
@@ -108,18 +115,19 @@ terminal multiplexer
 | prefix + - | split horizontally |
 | prefix + r | reload tmux config |
 | prefix + I | install tmux plugins |
-| Alt + ↑/↓/←/→| switch window |
+| prefix + [h j k l] | switch window |
+| Alt + [↑ ↓ ← →]| switch window |
 
 ### SESSION CONTROL
 
 | COMMAND | ACTION |
 | :--- | :--- |
 | tmux | create new session |
-| tmux new -s <session-name> | create new session with specified name |
+| tmux new -s \<session-name\> | create new session with specified name |
 | tmux ls | list sessions |
 | tmux a | reconnect to last session |
-| tmux a -t <session-name> | reconnect to specific session |
-| tmux kill-session -t <session-name> | destroy specific session |
+| tmux a -t \<session-name\> | reconnect to specific session |
+| tmux kill-session -t \<session-name\> | destroy specific session |
 | tmux kill-server | kill all sessions |
 
 ## VIM
@@ -134,13 +142,14 @@ h     l
 
 | COMMAND | ACTION |
 | :--- | :--- |
-| [number] w | move cursor nth words foward |
-| [number] e | move cursor to the end of the nth word foward |
-| [number] b | move cursor nth words backward |
+| [n] w | move cursor nth words foward |
+| [n] e | move cursor to the end of the nth word foward |
+| [n] b | move cursor nth words backward |
 | 0 | move cursor to start of the line |
 | gg | move the start of the file |
 | G | move to the end of the file |
-| <n> G | move to line n |
+| \<n\> G | move to line n |
+| 0G | move to the end of the file |
 
 ### BASIC
 
@@ -149,40 +158,48 @@ h     l
 | :h keyword | open help for keyword |
 | :q | quit vim |
 | :q! | quit vim without saving |
-| :w <filename> | save file |
+| :w \<filename\> | save file |
+| :e \<filename\> | open file for write |
 | u | undo last command |
+| CTRL R | reundo last command |
 | CTRL G | file status |
-| ! <external command> | execute an external command (see BASH for info) |
+| ! \<external command\> | execute an external command (see BASH for info) |
 
 | CHANGE MODE COMMAND | ACTION |
 | :--- | :--- |
 | ESC | exit last mode |
 | v | selection mode |
 | i | insertion mode |
+| q | recording mode (see MACROS for info) |
+| R | free replace mode (see REPLACE for info) |
+| :te | terminal mode |
 
 | COPY AND PASTE | 
 | :--- | :--- |
 | y | copy to buffer (use v to enter selection mode) |
 | yy | copy line |
 | p | paste |
+| P | paste in line above |
 
 | INSERTION COMMAND | ACTION |
 | :--- | :--- |
 | i | insertion mode on cursor |
-| a | insertion mode AFTER cursor |
-| A | insertion mode at THE END of the line |
+| I | insertion mode at start of the line |
+| a | insertion mode after cursor |
+| A | insertion mode at the end of the line |
 | o | insertion mode on line below |
-| O | insertion mode on line ABOVE |
+| O | insertion mode on line above |
 
 | DELETE COMMAND | ACTION |
 | :--- | :--- |
 | dd | delete whole line (deleted text goes to buffer) |
 | d$ | delete line after cursor |
+| d0 | delete line before cursor |
 | dw | delete word on cursor |
 
 | REPLACE COMMAND | ACTION |
 | :--- | :--- |
-| [number] r <char> | replace nth character at the cursor with char |
+| [n] r \<char\> | replace n characters at the cursor with char |
 | R | free replace mode (replace until ESC) |
 | ce | replace until the end of the word |
 | cc | replace everything until the end of the word |
@@ -190,6 +207,21 @@ h     l
 
 | SEARCH COMMAND | ACTION |
 | :--- | :--- |
-| / <word> | search for word in file (use n and N for go to next occurence) |
-| ? <word> | search for word in file backwards (use n and N for go to next occurence) |
+| / \<word\> | search for word in file (use n and N for go to next occurence) |
+| ? \<word\> | search for word in file backwards (use n and N for go to next occurence) |
+
+| SUBSTITUTE COMMAND | ACTION |
+| :--- | :--- |
+| :%s[ubstitute]/pattern/replacement | find and replace patter by replacement |
+| :5,10s/pattern/replacement [/g] | find and replace from line 5 to 10 incluse |
+| guu | lowercase entire line |
+| gUU | UPPERCASE entire line |
+| guw | lowercase word |
+| gUw | UPERCASE word |
+
+| MACROS | ACTION |
+| :--- | :--- |
+| q \<char\> | create macro named char (use q again to stop recording) |
+| @ \<char\> | use macro |
+| :req | list macros |
 

@@ -22,7 +22,7 @@ EOF
 
 case "$1" in
   "-w" | "-W" | "-write")
-    vim "$HELPER_FILE"
+    nvim "$HELPER_FILE"
     ;;
 
   "-l" | "-L" | "" | "-list")
